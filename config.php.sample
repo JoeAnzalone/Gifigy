@@ -1,0 +1,12 @@
+<?php
+
+// Get oAuth keys from https://www.tumblr.com/api
+// Get tokens from https://api.tumblr.com/console
+
+$config['consumerKey'] = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+$config['consumerSecret'] = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+
+$config['token'] = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+$config['tokenSecret'] = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+
+$config['blogName'] = 'gifigy';

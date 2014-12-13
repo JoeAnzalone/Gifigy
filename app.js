@@ -29,6 +29,13 @@ function beginSnapshots() {
             var image = obj.image, animatedImage = document.createElement('img');
             animatedImage.src = image;
             document.body.appendChild(animatedImage);
+            postImage(image);
         }
+    });
+}
+
+function postImage(base64) {
+    $.post('submit.php', {
+        photo_data: base64
     });
 }
