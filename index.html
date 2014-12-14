@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Gifigy</title>
     <link rel="stylesheet" href="main.css">
 </head>
@@ -9,6 +10,14 @@
     <div class="page">
         <video id="inputVideo" class="live" autoplay loop></video>
         <canvas id="inputCanvas" width="320" height="240" style="display:none"></canvas>
+        <div class="submit-form-wrapper">
+            <form class="submit-form" style="display: none;">
+                    <input type="text" class="usernames" name="usernames" placeholder="htmlbyjoe, kcreate, david">
+                    <input type="hidden" class="photo-data" name="photo-data">
+                    <button type="button" class="discard">Discard</button>
+                    <button type="submit">Post</button>
+            </form>
+        </div>
     </div>
     <script type="text/JavaScript" src="lib/jquery-2.1.1.min.js"></script>
     <script type="text/JavaScript" src="lib/headtrackr.js"></script>

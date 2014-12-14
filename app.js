@@ -27,17 +27,44 @@ function beginSnapshots() {
         video: videoInput.src,
     }, function (obj) {
         if (!obj.error) {
-            $('.page').removeClass('recording');
             var image = obj.image;
+            $('.page').removeClass('recording');
+            $('.page .submit-form').show();
+            $('.page .submit-form .usernames').focus();
+            $('.page .submit-form .photo-data').val(image);
             $('.page').css('background-image', 'url(' + image + ')');
             $('.page .live').hide();
-            postImage(image);
         }
     });
 }
 
-function postImage(base64) {
+$('.page .submit-form').submit(function(e){
+    e.preventDefault();
+
+    var usernames = e.currentTarget.elements.usernames.value;
+    var photoData = e.currentTarget.elements['photo-data'].value;
+
     $.post('submit.php', {
-        photo_data: base64
+        photo_data: photoData,
+        usernames: usernames
+    })
+    .done(function() {
+        reset();
+    })
+    .fail(function() {
+        alert('Something broke! :(');
     });
+
+    return false;
+});
+
+$('.page .submit-form .discard').click(function(){
+    reset();
+});
+
+function reset() {
+    $('.page .live').show();
+    $('.page .submit-form').hide();
+    $('.page').css('background-image', 'none');
+    $('.page .submit-form .usernames').val('');
 }
