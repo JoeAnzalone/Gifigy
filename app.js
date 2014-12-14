@@ -28,9 +28,9 @@ function beginSnapshots() {
     }, function (obj) {
         if (!obj.error) {
             $('.page').removeClass('recording');
-            var image = obj.image, animatedImage = document.createElement('img');
-            animatedImage.src = image;
-            document.body.appendChild(animatedImage);
+            var image = obj.image;
+            $('.page').css('background-image', 'url(' + image + ')');
+            $('.page .live').hide();
             postImage(image);
         }
     });
