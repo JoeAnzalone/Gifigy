@@ -1,0 +1,40 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    background: #000;
+    padding: 0;
+    margin: 0;
+    display: table;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.page:before {
+    content: '';
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    border: 10px solid transparent;
+    background: transparent;
+}
+
+.page .live {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+}
+
+.page.recording:before {
+    border-color: #f00;
+}

@@ -22,10 +22,12 @@ document.addEventListener('headtrackrStatus',
 );
 
 function beginSnapshots() {
+    $('.page').addClass('recording');
     gifshot.createGIF({
         video: videoInput.src,
     }, function (obj) {
         if (!obj.error) {
+            $('.page').removeClass('recording');
             var image = obj.image, animatedImage = document.createElement('img');
             animatedImage.src = image;
             document.body.appendChild(animatedImage);
