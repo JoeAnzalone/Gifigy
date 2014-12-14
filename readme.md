@@ -1,9 +1,9 @@
 Gifigy
 ------
 
-Make GIFs in your browser!
+Make GIFs in your browser and post them to [Tumblr](https://tumblr.com), hands-free!
 
-Uses [headtrackr](https://github.com/auduno/headtrackr) and [gifshot](https://github.com/yahoo/gifshot)
+Uses [headtrackr](https://github.com/auduno/headtrackr), [gifshot](https://github.com/yahoo/gifshot), and [tumblr.php](https://github.com/tumblr/tumblr.php)
 
 
 License
