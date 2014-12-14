@@ -62,6 +62,13 @@ $('.page .submit-form .discard').click(function(){
     reset();
 });
 
+$(document).keyup(function(e) {
+    if (e.keyCode == 27) {
+        // Close form when user hits escape
+        reset();
+    }
+});
+
 function reset() {
     $('.page .live').show();
     $('.page .submit-form').hide();
