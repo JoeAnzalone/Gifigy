@@ -64,12 +64,20 @@ body {
     opacity: 0.5;
 }
 
-.submit-form .usernames {
+.submit-form label {
     display: block;
-    margin: 20px auto;
-    padding: 0.5em;
+    background: #fff;
     width: 100%;
     max-width: 630px;
+    margin: 20px auto;
+}
+
+.submit-form .usernames {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0;
+    border: none;
 }
 
 input,
