@@ -10,7 +10,7 @@ var htracker = new headtrackr.Tracker({
 });
 
 htracker.init(videoInput, canvasInput);
-htracker.start();
+reset();
 
 document.addEventListener('headtrackrStatus',
     function (event) {
@@ -29,6 +29,7 @@ function beginSnapshots() {
         if (!obj.error) {
             var image = obj.image;
             $('.page').removeClass('recording');
+            htracker.stop();
             $('.page .submit-form').show();
             $('.page .submit-form .usernames').focus();
             $('.page .submit-form .photo-data').val(image);
@@ -70,6 +71,7 @@ $(document).keyup(function(e) {
 });
 
 function reset() {
+    htracker.start();
     $('.page .live').show();
     $('.page .submit-form').hide();
     $('.page').css('background-image', 'none');

@@ -61,6 +61,7 @@ body {
     top: 0;
     left: 0;
     text-align: center;
+    opacity: 0.5;
 }
 
 .submit-form .usernames {
