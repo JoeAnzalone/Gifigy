@@ -1,19 +1,12 @@
 var videoInput  = document.getElementById('inputVideo');
 var canvasInput = document.getElementById('inputCanvas');
 var intervalId;
+var facetracker;
 
 initVideo(videoInput, canvasInput, function(){
     reset();
 });
 
-var facetracker = new headtrackr.facetrackr.Tracker({
-    smoothing: false,
-    sendEvents: false,
-    whitebalancing: false,
-    calcAngles : false,
-});
-
-facetracker.init(canvasInput);
 var ctx = canvasInput.getContext('2d');
 
 function detect() {
@@ -85,6 +78,16 @@ $(document).keyup(function(e) {
 });
 
 function reset() {
+
+    facetracker = new headtrackr.facetrackr.Tracker({
+        smoothing: false,
+        sendEvents: false,
+        whitebalancing: false,
+        calcAngles : false,
+    });
+
+    facetracker.init(canvasInput);
+
     var videoScale = 0.25;
     canvasInput.width  = videoInput.videoWidth  * videoScale;
     canvasInput.height = videoInput.videoHeight * videoScale;
