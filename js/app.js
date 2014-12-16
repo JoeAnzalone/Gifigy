@@ -30,10 +30,20 @@ function beginRecording() {
     $('.page').addClass('recording');
     gifshot.createGIF({
         video: videoInput.src,
+        gifWidth: canvasInput.width,
+        gifHeight: canvasInput.height,
+        numFrames: 20,
+        interval: 0.1,
+        progressCallback: function(progress) {
+            if (progress >= 1) {
+                $('.page').removeClass('recording');
+                $('.page').addClass('rendering');
+            }
+        }
     }, function (obj) {
         if (!obj.error) {
             var image = obj.image;
-            $('.page').removeClass('recording');
+            $('.page').removeClass('rendering');
             $('.page .submit-form').show();
             $('.page .submit-form .usernames').focus();
             $('.page .submit-form .photo-data').val(image);
