@@ -10,3 +10,4 @@ $config['token'] = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
 $config['tokenSecret'] = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
 
 $config['blogName'] = 'gifigy';
+$config['defaultPostState'] = 'published';

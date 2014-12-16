@@ -30,7 +30,7 @@ $caption .= '<small>From <a href="https://github.com/JoeAnzalone/Gifigy">Gifigy<
 
 $postData = array(
     'type'    => 'photo',
-    'state'   => 'published',
+    'state'   => $config['defaultPostState'],
     'tags'    => '',
     'caption' => $caption,
     'link'    => '',
