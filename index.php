@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Gifigy</title>
     <link rel="stylesheet" href="main.css">
 </head>
