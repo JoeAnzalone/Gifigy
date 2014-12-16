@@ -13,7 +13,7 @@ var facetracker = new headtrackr.facetrackr.Tracker({
     calcAngles : false,
 });
 
-var facetracker.init(canvasInput);
+facetracker.init(canvasInput);
 var ctx = canvasInput.getContext('2d');
 
 function detect() {
