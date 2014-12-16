@@ -1,27 +1,32 @@
 var videoInput  = document.getElementById('inputVideo');
 var canvasInput = document.getElementById('inputCanvas');
+var intervalId;
 
-var htracker = new headtrackr.Tracker({
-    ui: true,
-    headPosition : false,
-    fadeVideo: false,
-    calcAngles: true,
-    headPosition: false
+initVideo(videoInput, canvasInput, function(){
+    reset();
 });
 
-htracker.init(videoInput, canvasInput);
-reset();
+var facetracker = new headtrackr.facetrackr.Tracker({
+    smoothing: false,
+    sendEvents: false,
+    whitebalancing: false,
+    calcAngles : false,
+});
 
-document.addEventListener('headtrackrStatus',
-    function (event) {
-        var status = event.status;
-        if (status == 'found') {
-            beginSnapshots();
-        }
+var facetracker.init(canvasInput);
+var ctx = canvasInput.getContext('2d');
+
+function detect() {
+    ctx.drawImage(videoInput, 0, 0, canvasInput.width, canvasInput.height);
+    facetracker.track();
+    var faceObj = facetracker.getTrackingObject();
+    if (faceObj.width !== 0 && faceObj.height !== 0) {
+        window.clearInterval(intervalId);
+        beginRecording();
     }
-);
+}
 
-function beginSnapshots() {
+function beginRecording() {
     $('.page').addClass('recording');
     gifshot.createGIF({
         video: videoInput.src,
@@ -29,7 +34,6 @@ function beginSnapshots() {
         if (!obj.error) {
             var image = obj.image;
             $('.page').removeClass('recording');
-            htracker.stop();
             $('.page .submit-form').show();
             $('.page .submit-form .usernames').focus();
             $('.page .submit-form .photo-data').val(image);
@@ -71,9 +75,62 @@ $(document).keyup(function(e) {
 });
 
 function reset() {
-    htracker.start();
+    var videoScale = 0.25;
+    canvasInput.width  = videoInput.videoWidth  * videoScale;
+    canvasInput.height = videoInput.videoHeight * videoScale;
+
+    intervalId = window.setInterval(detect, 1000);
     $('.page .live').show();
     $('.page .submit-form').hide();
     $('.page').css('background-image', 'none');
     $('.page .submit-form .usernames').val('');
+}
+
+function initVideo(video, canvas, success) {
+    // Adapted from:
+    // https://github.com/auduno/headtrackr/blob/1d29271c6e2c3ed01bfc96b18bacfe4ea56c26c6/headtrackr.js#L149
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+    // Check for camera support
+    if (navigator.getUserMedia) {
+
+        // Chrome 19 shim
+        var videoSelector = {video : true};
+        if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
+            var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
+            if (chromeVersion < 20) {
+                videoSelector = "video";
+            }
+        };
+
+        // Opera shim
+        if (window.opera) {
+            window.URL = window.URL || {};
+            if (!window.URL.createObjectURL) window.URL.createObjectURL = function(obj) {return obj;};
+        }
+
+        // Set up stream
+        navigator.getUserMedia(videoSelector, (function( stream ) {
+            this.stream = stream;
+            if (video.mozCaptureStream) {
+              video.mozSrcObject = stream;
+            } else {
+              video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+            }
+            video.play();
+        }).bind(this), function() {
+        });
+    } else {
+        alert('Your browser is unsupported. Try using Chrome or something.');
+    }
+
+    // Resize video when it's playing
+    video.addEventListener('playing', function() {
+        if(video.width > video.height) {
+            video.width = 320;
+        } else {
+            video.height = 240;
+        }
+        success();
+    }, false);
 }
