@@ -2,8 +2,10 @@ var videoInput  = document.getElementById('inputVideo');
 var canvasInput = document.getElementById('inputCanvas');
 var intervalId;
 var facetracker;
+var stream;
 
-initVideo(videoInput, canvasInput, function(){
+initVideo(videoInput, canvasInput, function(webcamStream){
+    stream = webcamStream;
     reset();
 });
 
@@ -22,7 +24,8 @@ function detect() {
 function beginRecording() {
     $('.page').addClass('recording');
     gifshot.createGIF({
-        video: videoInput.src,
+        cameraStream: stream,
+        keepCameraOn: true,
         gifWidth: canvasInput.width,
         gifHeight: canvasInput.height,
         numFrames: 20,
@@ -88,7 +91,8 @@ function reset() {
 
     facetracker.init(canvasInput);
 
-    var videoScale = 0.25;
+    var videoScale = 0.5;
+
     canvasInput.width  = videoInput.videoWidth  * videoScale;
     canvasInput.height = videoInput.videoHeight * videoScale;
 
@@ -144,6 +148,13 @@ function initVideo(video, canvas, success) {
         } else {
             video.height = 240;
         }
-        success();
+
+        var intervalId = window.setInterval(function(){
+            if (video.videoWidth && video.videoHeight) {
+                window.clearInterval(intervalId);
+                success(stream);
+            }
+        }, 100);
+
     }, false);
 }
