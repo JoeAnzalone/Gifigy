@@ -39,14 +39,6 @@ body {
     transform: scaleX(-1);
 }
 
-.page .output {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-}
-
 .page.recording:before {
     border-color: #f00;
 }
