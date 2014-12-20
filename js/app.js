@@ -43,7 +43,8 @@ function beginRecording() {
             $('.page .submit-form').show();
             $('.page .submit-form .usernames').focus();
             $('.page .submit-form .photo-data').val(image);
-            $('.page').css('background-image', 'url(' + image + ')');
+            $('.page .output').attr('src', image);
+            $('.page .output').show();
             $('.page .live').hide();
         }
     });
@@ -102,7 +103,7 @@ function reset() {
     intervalId = window.setInterval(detect, 1000);
     $('.page .live').show();
     $('.page .submit-form').hide();
-    $('.page').css('background-image', 'none');
+    $('.page .output').hide();
     $('.page .submit-form .usernames').val('');
 }
 

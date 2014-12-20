@@ -11,6 +11,7 @@
 <body>
     <div class="page">
         <video id="inputVideo" class="live" autoplay loop></video>
+        <img class="output" style="display: none;">
         <canvas id="inputCanvas" width="320" height="240" style="display:none"></canvas>
         <div class="submit-form-wrapper">
             <form class="submit-form" style="display: none;">
