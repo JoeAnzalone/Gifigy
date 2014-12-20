@@ -11,12 +11,19 @@ var ctx = canvasInput.getContext('2d');
 
 function detect() {
     ctx.drawImage(videoInput, 0, 0, canvasInput.width, canvasInput.height);
-    facetracker.track();
-    var faceObj = facetracker.getTrackingObject();
-    if (faceObj.width !== 0 && faceObj.height !== 0) {
-        window.clearInterval(intervalId);
-        beginRecording();
-    }
+
+    $(canvasInput).objectdetect('finest', {classifier: objectdetect.frontalface}, function(faces) {
+        if (faces.length) {
+            alert('face found!');
+        }
+    });
+
+    // facetracker.track();
+    // var faceObj = facetracker.getTrackingObject();
+    // if (faceObj.width !== 0 && faceObj.height !== 0) {
+    //     window.clearInterval(intervalId);
+    //     beginRecording();
+    // }
 }
 
 function beginRecording() {
@@ -79,14 +86,14 @@ $(document).keyup(function(e) {
 
 function reset() {
 
-    facetracker = new headtrackr.facetrackr.Tracker({
+/*    facetracker = new headtrackr.facetrackr.Tracker({
         smoothing: false,
         sendEvents: false,
         whitebalancing: false,
         calcAngles : false,
     });
 
-    facetracker.init(canvasInput);
+    facetracker.init(canvasInput);*/
 
     var videoScale = 0.25;
     canvasInput.width  = videoInput.videoWidth  * videoScale;

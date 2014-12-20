@@ -23,8 +23,15 @@
             </form>
         </div>
     </div>
+
+    <script src="js/lib/objectdetect.js"></script>
+    <script src="js/lib/objectdetect.frontalface.js"></script>
+    <script src="js/lib/objectdetect.eye.js"></script>
     <script type="text/JavaScript" src="js/lib/jquery-2.1.1.min.js"></script>
-    <script type="text/JavaScript" src="js/lib/headtrackr.js"></script>
+    <!-- <script src="js/jquery.js"></script> -->
+    <script src="js/lib/jquery.objectdetect.js"></script>
+
+    <!-- <script type="text/JavaScript" src="js/lib/headtrackr.js"></script> -->
     <script type="text/JavaScript" src="js/lib/gifshot.min.js"></script>
     <script type="text/JavaScript" src="js/app.js"></script>
 </body>
