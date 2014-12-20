@@ -24,7 +24,8 @@
         </div>
     </div>
     <script type="text/JavaScript" src="js/lib/jquery-2.1.1.min.js"></script>
-    <script type="text/JavaScript" src="js/lib/headtrackr.js"></script>
+    <script type="text/JavaScript" src="/ccv.js"></script>
+    <script type="text/JavaScript" src="js/lib/face.js"></script>
     <script type="text/JavaScript" src="js/lib/gifshot.min.js"></script>
     <script type="text/JavaScript" src="js/app.js"></script>
 </body>

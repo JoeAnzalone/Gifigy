@@ -1,7 +1,7 @@
 var videoInput  = document.getElementById('inputVideo');
 var canvasInput = document.getElementById('inputCanvas');
 var intervalId;
-var facetracker;
+// var facetracker;
 
 initVideo(videoInput, canvasInput, function(){
     reset();
@@ -11,12 +11,29 @@ var ctx = canvasInput.getContext('2d');
 
 function detect() {
     ctx.drawImage(videoInput, 0, 0, canvasInput.width, canvasInput.height);
-    facetracker.track();
-    var faceObj = facetracker.getTrackingObject();
-    if (faceObj.width !== 0 && faceObj.height !== 0) {
+
+    // var image = new Image();
+    // image.src = videoInput;
+    // document.body.appendChild(image);
+    // console.log(image);
+
+    var comp = ccv.detect_objects({
+        "canvas"        : ccv.grayscale(ccv.pre(canvasInput)),
+        "cascade"       : cascade,
+        "interval"      : 5,
+        "min_neighbors" : 1
+    });
+
+    if (comp.length && comp[0].confidence >= 1) {
         window.clearInterval(intervalId);
         beginRecording();
     }
+    // facetracker.track();
+    // var faceObj = facetracker.getTrackingObject();
+    // if (faceObj.width !== 0 && faceObj.height !== 0) {
+    //     window.clearInterval(intervalId);
+    //     beginRecording();
+    // }
 }
 
 function beginRecording() {
@@ -79,14 +96,14 @@ $(document).keyup(function(e) {
 
 function reset() {
 
-    facetracker = new headtrackr.facetrackr.Tracker({
+    /*facetracker = new headtrackr.facetrackr.Tracker({
         smoothing: false,
         sendEvents: false,
         whitebalancing: false,
         calcAngles : false,
-    });
+    });*/
 
-    facetracker.init(canvasInput);
+    // facetracker.init(canvasInput);
 
     var videoScale = 0.25;
     canvasInput.width  = videoInput.videoWidth  * videoScale;
