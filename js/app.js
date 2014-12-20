@@ -33,13 +33,13 @@ function beginRecording() {
         progressCallback: function(progress) {
             if (progress >= 1) {
                 $('.page').removeClass('recording');
-                $('.page').addClass('rendering');
+                $('.page').addClass('loading');
             }
         }
     }, function (obj) {
         if (!obj.error) {
             var image = obj.image;
-            $('.page').removeClass('rendering');
+            $('.page').removeClass('loading');
             $('.page .submit-form').show();
             $('.page .submit-form .usernames').focus();
             $('.page .submit-form .photo-data').val(image);
@@ -55,12 +55,15 @@ $('.page .submit-form').submit(function(e){
     var usernames = e.currentTarget.elements.usernames.value;
     var photoData = e.currentTarget.elements['photo-data'].value;
 
+    $('.page').addClass('loading');
+
     $.post('submit.php', {
         photo_data: photoData,
         usernames: usernames
     })
     .done(function() {
         reset();
+        $('.page').removeClass('loading');
     })
     .fail(function() {
         alert('Something broke! :(');

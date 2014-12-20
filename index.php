@@ -22,6 +22,9 @@
                     <button type="submit">Post</button>
             </form>
         </div>
+        <div class="loading-wrapper">
+            <div class="loading-icon">⊛</div>
+        </div>
     </div>
     <script type="text/JavaScript" src="js/lib/jquery-2.1.1.min.js"></script>
     <script type="text/JavaScript" src="js/lib/headtrackr.js"></script>
