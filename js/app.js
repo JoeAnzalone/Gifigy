@@ -142,7 +142,7 @@ function initVideo(video, canvas, success) {
     }
 
     // Resize video when it's playing
-    video.addEventListener('playing', function() {
+    video.addEventListener('play', function() {
         if(video.width > video.height) {
             video.width = 320;
         } else {
