@@ -91,7 +91,7 @@ button {
 }
 
 .page.loading .loading-wrapper {
-    display: table;
+    display: block;
     background-color: #000;
     opacity: 0.5;
 }
@@ -104,25 +104,4 @@ button {
     top: 0;
     left: 0;
     z-index: 300;
-}
-
-.loading-icon {
-    display: table-cell;
-    color: #fff;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-    -webkit-animation: rotation 2s infinite linear;
-    animation: rotation 2s infinite linear;
-}
-
-@-webkit-keyframes rotation {
-    from {-webkit-transform: rotate(0deg);}
-    to   {-webkit-transform: rotate(359deg);}
-}
-
-@keyframes rotation {
-    from {transform: rotate(0deg);}
-    to   {transform: rotate(359deg);}
 }
