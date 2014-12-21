@@ -119,7 +119,7 @@ function reset() {
     canvasInput.width  = videoInput.videoWidth  * videoScale;
     canvasInput.height = videoInput.videoHeight * videoScale;
 
-    intervalId = window.setInterval(detect, 1000);
+    intervalId = window.setInterval(detect, 250);
     $('.page .live').show();
     $('.page .submit-form').hide();
     $('.page').css('background-image', 'none');
