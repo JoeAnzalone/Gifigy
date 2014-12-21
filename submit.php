@@ -8,6 +8,7 @@ $client->setToken($config['token'], $config['tokenSecret']);
 
 $photoData = $_POST['photo_data'];
 $usernames = explode(',', $_POST['usernames']);
+$usernames = array_filter($usernames);
 
 $photoFilename = 'temp.gif';
 $photoData = file_get_contents($photoData);
